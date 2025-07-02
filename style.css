@@ -1,0 +1,20 @@
+body {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+#whiteboard {
+    display: flex;
+    flex-wrap: wrap;
+
+    border: 1px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+
+    width: 1600px;
+    height: 800px;
+}
+
+.pixel {
+    background-color: rgba(0, 0, 0, 1);
+}

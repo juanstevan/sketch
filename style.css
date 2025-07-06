@@ -3,7 +3,7 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-#whiteboard {
+#board {
     display: flex;
     flex-wrap: wrap;
 
@@ -17,4 +17,8 @@ body {
 
 .pixel {
     background-color: rgba(0, 0, 0, 1);
+}
+
+.active {
+    background-color: white;
 }

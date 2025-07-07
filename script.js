@@ -1,12 +1,15 @@
 const board = document.querySelector('#board');
 
-let pixel = 8
+let pixel = 2
 let boardWidth = board.clientWidth;
 let boardHeight = board.clientHeight;
 
 let pixelWidth = boardWidth / pixel;
 let pixelHeight = boardHeight / pixel;
 let pixelTotal = pixelWidth * pixelHeight;
+
+let actions = [];
+let current = [];
 
 // Creates all the div(pixel) in the board
 for (i of Array(pixelTotal).keys()) {
@@ -50,6 +53,7 @@ function addCircle(positionX, positionY) {
         if (xLoc > pixelWidth || yLoc > pixelWidth || xLoc < 1 || yLoc < 1) return;
 
         const pixelSelect = document.querySelector(`#xy${xLoc}-${yLoc}`);
+        current.push(pixelSelect);
         pixelSelect.classList.add('active');
     });
 }
@@ -59,6 +63,8 @@ board.addEventListener('mousedown', () => {
     board.addEventListener('mousemove', mouseMove);
 });
 
-board.addEventListener('mouseup', () => {
+board.addEventListener('click', () => {
     board.removeEventListener('mousemove', mouseMove);
+    actions.push(current);
+    console.log(actions);
 });

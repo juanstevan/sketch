@@ -1,6 +1,10 @@
 body {
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 #board {
@@ -11,8 +15,8 @@ body {
     border-radius: 20px;
     overflow: hidden;
 
-    width: 1600px;
-    height: 800px;
+    width: 1200px;
+    height: 400px;
 }
 
 .pixel {
@@ -21,4 +25,25 @@ body {
 
 .active {
     background-color: white;
+}
+
+#buttons {
+    display: flex;
+    justify-content: end;
+    column-gap: 20px;
+    border: 1px solid white;
+
+    color: white;
+
+    padding: 10px;
+    width: 100px;
+    margin-right: 20px;
+    margin-top: -40px;
+    z-index: 1;
+}
+
+#pre, #next {
+
+    cursor: pointer;
+    user-select: none;
 }

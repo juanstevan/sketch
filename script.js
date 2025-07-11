@@ -1,11 +1,12 @@
 const board = document.querySelector('#board');
 
-let pixel = 2
+let pixel = 40
 let boardWidth = board.clientWidth;
 let boardHeight = board.clientHeight;
 
 let pixelWidth = boardWidth / pixel;
 let pixelHeight = boardHeight / pixel;
+console.log(boardWidth)
 let pixelTotal = pixelWidth * pixelHeight;
 
 let actions = [];
@@ -13,7 +14,7 @@ let current = [];
 
 // Creates all the div(pixel) in the board
 for (i of Array(pixelTotal).keys()) {
-    let col = (i +1) % pixelWidth;
+    let col = (i) % pixelWidth +1;
     let row = Math.ceil((i +1) / pixelWidth);
 
     let pixelDiv = document.createElement('div');

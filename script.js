@@ -54,12 +54,16 @@ function addCircle(positionX, positionY) {
         if (xLoc > pixelWidth || yLoc > pixelWidth || xLoc < 1 || yLoc < 1) return;
 
         const pixelSelect = document.querySelector(`#xy${xLoc}-${yLoc}`);
-        current.push(pixelSelect);
+        if (!current.includes(pixelSelect)) current.push(pixelSelect);
         pixelSelect.classList.add('active');
     });
 }
 
 // Makes the drawing appear only on mouse press
+board.addEventListener('mouseleave', () => {
+    board.dispatchEvent(new Event('click'));
+});
+
 board.addEventListener('mousedown', () => {
     board.addEventListener('mousemove', mouseMove);
 });
@@ -67,5 +71,18 @@ board.addEventListener('mousedown', () => {
 board.addEventListener('click', () => {
     board.removeEventListener('mousemove', mouseMove);
     actions.push(current);
-    console.log(actions);
+    current = [];
+    console.log(actions[actions.lenght -1]);
+});
+
+
+// Buttons functionalities
+const clear = document.querySelector("#clear");
+const pre = document.querySelector("#pre");
+const next = document.querySelector("#next");
+
+clear.addEventListener('click', () => {
+    for (pixel of board.children) {
+        pixel.classList.remove("active");
+    }
 });

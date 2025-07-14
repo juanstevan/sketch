@@ -1,6 +1,6 @@
 const board = document.querySelector('#board');
 
-let pixel = 40
+let pixel = 4
 let boardWidth = board.clientWidth;
 let boardHeight = board.clientHeight;
 

@@ -1,12 +1,11 @@
 const board = document.querySelector('#board');
 
-let pixel = 4
+let pixel = 40
 let boardWidth = board.clientWidth;
 let boardHeight = board.clientHeight;
 
 let pixelWidth = boardWidth / pixel;
 let pixelHeight = boardHeight / pixel;
-console.log(boardWidth)
 let pixelTotal = pixelWidth * pixelHeight;
 
 let actions = [];
@@ -47,7 +46,6 @@ function addCircle(positionX, positionY) {
     let moveX = Math.ceil(positionX / pixel) - 5;
     let moveY = Math.ceil(positionY / pixel) - 5;
 
-    console.log(pixel);
     circle.forEach(dot => {
         let xLoc = (dot -1) % 8 +1 +moveX;
         let yLoc = Math.ceil(dot / 8) +moveY;
@@ -55,10 +53,10 @@ function addCircle(positionX, positionY) {
         if (xLoc > pixelWidth || yLoc > pixelHeight || xLoc < 1 || yLoc < 1) return;
 
         const pixelSelect = document.querySelector(`#xy${xLoc}-${yLoc}`);
-        pixelSelect.classList.add('active');
-        if (!current.includes(pixelSelect)) {
+        if (!current.includes(pixelSelect) && !pixelSelect.classList.contains('active')) {
             current.push(pixelSelect);
         }
+        pixelSelect.classList.add('active');
     });
 }
 
@@ -76,16 +74,20 @@ board.addEventListener('click', () => {
     board.removeEventListener('mousemove', mouseMove);
     if (current.length > 1) actions.push(current);
     current = [];
-    // console.log(actions);
+    console.log(actions);
 });
 
 // Buttons functionalities
 const clear = document.querySelector("#clear");
 const pre = document.querySelector("#pre");
-const next = document.querySelector("#next");
 
 clear.addEventListener('click', () => {
     for (child of board.children) {
         child.classList.remove("active");
     }
+    actions = [actions.reduce((acc, item) => acc.concat(item))];
+});
+
+pre.addEventListener('click', () => {
+    actions.pop().forEach(item => item.classList.toggle('active'))
 });
